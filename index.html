@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>game ban bong</title>
+</head>
+<body>
+<img id="imgPlane" src="images/plane.png" style="display: none">
+<img id="imgBg" src="images/background.png" style="display: none">
+<canvas id="gameBoard" width="300" height="500" style="border: 1px solid #000000"> </canvas>
+
+<script src="plane.js"></script>
+<script src="circles.js"></script>
+<script>
+    document.addEventListener('keyup',function (event) {
+        if (event.keyCode == 37) {
+            plane.isMoveLeft = false;
+        } else if (event.keyCode == 39) {
+            plane.isMoveRight = false;
+        } else if (event.keyCode == 66) {
+            bullet.isShoot = false;
+        }
+    });
+
+    document.addEventListener('keydown',function (event) {
+        if (event.keyCode == 37) {
+            plane.isMoveLeft = true;
+        } else if (event.keyCode == 39) {
+            plane.isMoveRight = true;
+        } else if (event.keyCode == 66) {
+            bullet.isShoot = true;
+        }
+    });
+
+    function processing() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        background.draw();
+        showCircles();
+        plane.draw();
+        plane.move();
+        bullet.shoot(plane);
+        bullet.move();
+        requestAnimationFrame(processing);
+    }
+
+    processing();
+</script>
+</body>
+</html>
