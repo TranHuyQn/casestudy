@@ -1,6 +1,5 @@
 let canvas = document.getElementById('gameBoard');
 let ctx = canvas.getContext('2d');
-let bullets = [];
 
 let Background = function () {
     this.draw = function () {
@@ -9,7 +8,25 @@ let Background = function () {
     }
 };
 
-let Plane = function (xPosition, yPosition, width, height, speed, isMoveLeft, isMoveRight) {
+let Bullet = function (xPosition, yPosition, radius) {
+    this.xPosition = xPosition;
+    this.yPosition = yPosition;
+    this.radius = radius;
+
+    this.draw = function () {
+        ctx.beginPath();
+        ctx.arc(this.xPosition, this.yPosition, this.radius, 0, 2 * Math.PI);
+        ctx.fillStyle = 'white';
+        ctx.fill();
+        ctx.closePath();
+    };
+
+    this.move = function () {
+        this.yPosition -= 10;
+    }
+};
+
+let Plane = function (xPosition, yPosition, width, height, speed, isMoveLeft, isMoveRight, isShoot) {
     this.width = width;
     this.height = height;
     this.speed = speed;
@@ -17,6 +34,10 @@ let Plane = function (xPosition, yPosition, width, height, speed, isMoveLeft, is
     this.yposition = yPosition;
     this.isMoveLeft = isMoveLeft;
     this.isMoveRight = isMoveRight;
+    this.isShoot = isShoot;
+    this.reload = 10;
+    this.reloadCount = 0;
+    this.bullets = [];
 
     this.getWidth = function () {
         return this.width;
@@ -53,29 +74,29 @@ let Plane = function (xPosition, yPosition, width, height, speed, isMoveLeft, is
         }
     };
 
-};
+    this.shoot = function () {
 
-let Bullet = function(isShoot){
-    this.isShoot = isShoot;
-    let yBullet;
-    this.shoot = function (plane) {
-        let xBullet = plane.getXPosition() + plane.getWidth()/2;
-        yBullet = plane.getYPosition();
         if (this.isShoot) {
-            ctx.beginPath();
-            ctx.arc(xBullet, yBullet, 2, 0, 2 * Math.PI);
-            ctx.fillStyle = 'white';
-            ctx.fill();
-            ctx.closePath();
+            this.reloadCount++;
+            if (this.reloadCount >= this.reload) {
+                let bullet = new Bullet(this.xPosition + this.width / 2, this.yposition, 2);
+                this.bullets.push(bullet);
+                this.reloadCount = 0;
+            }
         }
-    };
-
-    this.move = function () {
-        // let yBullet = plane.getYPosition();
-        yBullet -= 1;
+        for (let i = 0; i < this.bullets.length; i++) {
+            if (this.bullets[i].yPosition < 0) {
+                this.bullets.splice(i, 1);
+                i--;
+            } else {
+                this.bullets[i].move();
+                this.bullets[i].draw();
+            }
+        }
     }
+
 };
+
 
 let background = new Background();
-let plane = new Plane(canvas.width / 2 - 41 / 2, canvas.height - 62, 41, 42, 5, false, false);
-let bullet = new Bullet(false);
+let plane = new Plane(canvas.width / 2 - 41 / 2, canvas.height - 62, 41, 42, 5, false, false, false);

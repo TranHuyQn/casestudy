@@ -1,21 +1,24 @@
 let circles = [];
 
-function Circle(x, y, radius,color, speed) {
-    this.x = x;
-    this.y = y;
+function Circle(xPosition, yPosition, radius,color, speed) {
+    this.xPosition = xPosition;
+    this.yPosition = yPosition;
     this.radius = radius;
     this.color = color;
     this.speed = speed;
+    this.isLive = true;
 
     this.draw = function () {
-        ctx.beginPath();
-        ctx.arc(this.x, this.y, this.radius, 0, 2 * Math.PI);
-        ctx.fillStyle = this.color;
-        ctx.fill();
-
+        if (this.isLive) {
+            ctx.beginPath();
+            ctx.arc(this.xPosition, this.yPosition, this.radius, 0, 2 * Math.PI);
+            ctx.fillStyle = this.color;
+            ctx.fill();
+        }
     };
+
     this.move = function () {
-        this.y += this.speed;
+        this.yPosition += this.speed;
     };
 }
 
@@ -51,8 +54,14 @@ creatMultipleCircle();
 
 function showCircles(){
     for (let i = 0; i < circles.length; i++) {
-        circles[i].move();
-        circles[i].draw();
+
+        if (circles[i].yPosition > canvas.height){
+            circles.splice(i, 1);
+            i--;
+        } else {
+            circles[i].move();
+            circles[i].draw();
+        }
     }
 }
 
