@@ -51,18 +51,14 @@ function creatMultipleCircle() {
         createCircle();
     }
 }
+
 creatMultipleCircle();
 
 function showCircles(){
     for (let i = 0; i < circles.length; i++) {
-
-        if (circles[i].yPosition > canvas.height){
-            circles.splice(i, 1);
-            i--;
-        } else {
             circles[i].move();
             circles[i].draw();
-        }
+
     }
 }
 

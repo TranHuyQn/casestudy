@@ -1,31 +1,3 @@
-let canvas = document.getElementById('gameBoard');
-let ctx = canvas.getContext('2d');
-
-let Background = function () {
-    this.draw = function () {
-        let imgBg = document.getElementById('imgBg');
-        ctx.drawImage(imgBg, 0, 0);
-    }
-};
-
-let Bullet = function (xPosition, yPosition, radius) {
-    this.xPosition = xPosition;
-    this.yPosition = yPosition;
-    this.radius = radius;
-
-    this.draw = function () {
-            ctx.beginPath();
-            ctx.arc(this.xPosition, this.yPosition, this.radius, 0, 2 * Math.PI);
-            ctx.fillStyle = 'white';
-            ctx.fill();
-            ctx.closePath();
-    };
-
-    this.move = function () {
-        this.yPosition -= 10;
-    }
-};
-
 let Plane = function (xPosition, yPosition, width, height, speed, isMoveLeft, isMoveRight, isShoot) {
     this.width = width;
     this.height = height;
@@ -38,22 +10,6 @@ let Plane = function (xPosition, yPosition, width, height, speed, isMoveLeft, is
     this.reload = 10;
     this.reloadCount = 0;
     this.bullets = [];
-
-    this.getWidth = function () {
-        return this.width;
-    };
-
-    this.getHeight = function () {
-        return this.height;
-    };
-
-    this.getXPosition = function () {
-        return this.xPosition;
-    };
-
-    this.getYPosition = function () {
-        return this.yposition;
-    };
 
     this.draw = function () {
         let imgPlane = document.getElementById('imgPlane');
@@ -81,6 +37,9 @@ let Plane = function (xPosition, yPosition, width, height, speed, isMoveLeft, is
             if (this.reloadCount >= this.reload) {
                 let bullet = new Bullet(this.xPosition + this.width / 2, this.yposition, 2);
                 this.bullets.push(bullet);
+                let sound = new Audio();
+                sound.src = "sounds/bulletSound.mp3";
+                sound.play();
                 this.reloadCount = 0;
             }
         }
@@ -98,5 +57,4 @@ let Plane = function (xPosition, yPosition, width, height, speed, isMoveLeft, is
 };
 
 
-let background = new Background();
-let plane = new Plane(canvas.width / 2 - 41 / 2, canvas.height - 62, 41, 42, 5, false, false, false);
+
