@@ -54,9 +54,13 @@
                 if (crash(circles[circle], plane.bullets[bullet])) {
                     circles[circle].isLive = false;
                 }
-                plane.bullets.slice(bullet, 1);
+
+            }
+            if (!circles[circle].isLive){
+                circles.splice(circle, 1);
             }
         }
+
     }
 
     let isGameOver = false;

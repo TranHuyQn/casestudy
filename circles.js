@@ -41,8 +41,9 @@ function createCircle() {
     let x = Math.random() * ((canvas.width - radius) - radius + 1) + radius;
     let y = Math.random() * (0 - canvas.height);
     let circle = new Circle(x, y, radius,color, speed);
-    circle.draw();
     circles.push(circle);
+    circle.draw();
+
 }
 
 function creatMultipleCircle() {
