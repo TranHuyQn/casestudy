@@ -7,7 +7,7 @@
 <body>
 <img id="imgPlane" src="images/plane.png" style="display: none">
 <img id="imgBg" src="images/background.png" style="display: none">
-<canvas id="gameBoard" width="300" height="500" style="border: 1px solid #000000"></canvas>
+<canvas id="gameBoard" width="800" height="500" style="border: 1px solid #000000"></canvas>
 
 <script src="plane.js"></script>
 <script src="circles.js"></script>
@@ -59,15 +59,27 @@
         }
     }
 
+    let isGameOver = false;
+
     function processing() {
-        ctx.clearRect(0, 0, canvas.width, canvas.height);
-        background.draw();
-        showCircles();
-        plane.draw();
-        plane.move();
-        plane.shoot();
-        checkCrash();
-        requestAnimationFrame(processing);
+        if (!isGameOver) {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            background.draw();
+            showCircles();
+            plane.draw();
+            plane.move();
+            plane.shoot();
+            checkCrash();
+            for (i = 0; i < circles.length; i++) {
+                if (circles[i].yPosition > canvas.height) {
+                    isGameOver = true;
+                }
+            }
+            requestAnimationFrame(processing);
+        } else {
+            alert('Thua');
+        }
+
     }
 
     processing();

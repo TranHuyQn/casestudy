@@ -14,11 +14,11 @@ let Bullet = function (xPosition, yPosition, radius) {
     this.radius = radius;
 
     this.draw = function () {
-        ctx.beginPath();
-        ctx.arc(this.xPosition, this.yPosition, this.radius, 0, 2 * Math.PI);
-        ctx.fillStyle = 'white';
-        ctx.fill();
-        ctx.closePath();
+            ctx.beginPath();
+            ctx.arc(this.xPosition, this.yPosition, this.radius, 0, 2 * Math.PI);
+            ctx.fillStyle = 'white';
+            ctx.fill();
+            ctx.closePath();
     };
 
     this.move = function () {
