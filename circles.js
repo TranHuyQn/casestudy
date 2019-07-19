@@ -36,7 +36,7 @@ function getRandomColor() {
 function createCircle() {
 
     let radius = Math.floor(Math.random() * 6 + 10);
-    let speed = 1;
+    let speed = Math.random()*1.3 + 0.5;
     let color = getRandomColor();
     let x = Math.random() * ((canvas.width - radius) - radius + 1) + radius;
     let y = Math.random() * (0 - canvas.height);

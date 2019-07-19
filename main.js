@@ -8,7 +8,7 @@ document.addEventListener('keyup', function (event) {
         plane.isMoveLeft = false;
     } else if (event.keyCode == 39) {
         plane.isMoveRight = false;
-    } else if (event.keyCode == 66) {
+    } else if (event.keyCode == 32) {
         plane.isShoot = false;
     }
 });
@@ -18,7 +18,7 @@ document.addEventListener('keydown', function (event) {
         plane.isMoveLeft = true;
     } else if (event.keyCode == 39) {
         plane.isMoveRight = true;
-    } else if (event.keyCode == 66) {
+    } else if (event.keyCode == 32) {
         plane.isShoot = true;
     }
 });
@@ -27,6 +27,8 @@ document.addEventListener('keypress', function (event) {
     console.log(event);
     if (event.keyCode == 13) {
         startGame();
+    } else if (event.keyCode == 114) {
+        restart();
     }
 });
 
