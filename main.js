@@ -55,3 +55,7 @@ function startGame() {
     }
 
 }
+
+function restart() {
+    location.reload();
+}
