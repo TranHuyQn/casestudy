@@ -1,7 +1,7 @@
 let GameBoard = function () {
     this.score = 0;
 
-    this.crash = function (enemy, bullet) {
+    this.crash = function (enemy, bullet) { //điều kiện va trạm.
         let leftEnemy = enemy.xPosition;
         let rightEnemy = enemy.xPosition + enemy.width;
         let topEnemy = enemy.yPosition;
@@ -17,7 +17,7 @@ let GameBoard = function () {
         }
     };
 
-    this.checkCrash = function () {
+    this.checkCrash = function () { //kiểm tra điều kiện va trạm.
         for (let enemy = 0; enemy < enemys.length; enemy++) {
             for (let bullet = 0; bullet < plane.bullets.length; bullet++) {
                 if (this.crash(enemys[enemy], plane.bullets[bullet])) {
@@ -25,20 +25,12 @@ let GameBoard = function () {
                 }
 
             }
-            if (!enemys[enemy].isLive) {
+            if (!enemys[enemy].isLive) { //xử lý tính điểm.
                 enemys.splice(enemy, 1);
                 this.score++;
             }
 
-            if (enemys.length == 0) {
-                let imgBg = document.getElementById('imgBg');
-                let index = 1;
-                if (index == 1) {
-                    index = 2;
-                } else {
-                    index = 1;
-                }
-                imgBg.src = "images/background" + index + ".png";
+            if (enemys.length == 0) { //tạo lại enemy khi bắn hết.
                 creatMultipleEnemy();
                 showEnemys();
 

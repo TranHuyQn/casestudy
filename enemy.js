@@ -19,6 +19,7 @@ let Enemy = function (xPosition , yPosition, width, height, speed) {
     }
 };
 
+//khởi tạo enemy.
 function createEnemy(){
     let enemyWidth = 30;
     let enemyHeight = 24;
@@ -30,6 +31,7 @@ function createEnemy(){
     enemy.draw();
 }
 
+//khởi tạo 50 enemy.
 function creatMultipleEnemy() {
     for (let i = 0; i < 50; i++) {
         createEnemy();
@@ -38,6 +40,7 @@ function creatMultipleEnemy() {
 
 creatMultipleEnemy();
 
+//Hiển thị 50 enemy.
 function showEnemys(){
     for (let i = 0; i < enemys.length; i++) {
         enemys[i].move();

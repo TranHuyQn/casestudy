@@ -3,6 +3,7 @@ let plane = new Plane(canvas.width / 2 - 41 / 2, canvas.height - 62, 41, 42, 5, 
 let gameBoard = new GameBoard();
 let isGameOver = false;
 
+//xử lý di chuyển mượt.
 document.addEventListener('keyup', function (event) {
     if (event.keyCode == 37) {
         plane.isMoveLeft = false;
@@ -32,6 +33,7 @@ document.addEventListener('keypress', function (event) {
     }
 });
 
+//Bắt đầu game.
 background.draw();
 plane.draw();
 gameBoard.drawScore();
@@ -45,6 +47,7 @@ function startGame() {
         plane.move();
         plane.shoot();
         gameBoard.checkCrash();
+        //xử lý kết thúc game.
         for (i = 0; i <  enemys.length; i++) {
             if ( enemys[i].yPosition > canvas.height) {
                 isGameOver = true;
