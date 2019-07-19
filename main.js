@@ -40,13 +40,13 @@ function startGame() {
     if (!isGameOver) {
         ctx.clearRect(0, 0, canvas.width, canvas.height);
         background.draw();
-        showCircles();
+        showEnemys();
         plane.draw();
         plane.move();
         plane.shoot();
         gameBoard.checkCrash();
-        for (i = 0; i < circles.length; i++) {
-            if (circles[i].yPosition > canvas.height) {
+        for (i = 0; i <  enemys.length; i++) {
+            if ( enemys[i].yPosition > canvas.height) {
                 isGameOver = true;
             }
         }

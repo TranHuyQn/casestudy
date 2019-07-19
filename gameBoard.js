@@ -1,16 +1,16 @@
 let GameBoard = function () {
     this.score = 0;
 
-    this.crash = function (circle, bullet) {
-        let leftCircle = circle.xPosition - circle.radius;
-        let rightCircle = circle.xPosition + circle.radius;
-        let topCircle = circle.yPosition - circle.radius;
-        let bottomCircle = circle.yPosition + circle.radius;
+    this.crash = function (enemy, bullet) {
+        let leftEnemy = enemy.xPosition;
+        let rightEnemy = enemy.xPosition + enemy.width;
+        let topEnemy = enemy.yPosition;
+        let bottomEnemy = enemy.yPosition + enemy.height;
         let leftBullet = bullet.xPosition - bullet.radius;
         let rightBullet = bullet.xPosition + bullet.radius;
         let topBullet = bullet.yPosition - bullet.radius;
         let bottomBullet = bullet.yPosition + bullet.radius;
-        if (rightCircle < leftBullet || bottomCircle < topBullet || leftCircle > rightBullet || topCircle > bottomBullet) {
+        if (rightEnemy < leftBullet || bottomEnemy < topBullet || leftEnemy > rightBullet || topEnemy > bottomBullet) {
             return false;
         } else {
             return true;
@@ -18,32 +18,40 @@ let GameBoard = function () {
     };
 
     this.checkCrash = function () {
-        for (let circle = 0; circle < circles.length; circle++) {
+        for (let enemy = 0; enemy < enemys.length; enemy++) {
             for (let bullet = 0; bullet < plane.bullets.length; bullet++) {
-                if (this. crash(circles[circle], plane.bullets[bullet])) {
-                    circles[circle].isLive = false;
+                if (this.crash(enemys[enemy], plane.bullets[bullet])) {
+                    enemys[enemy].isLive = false;
                 }
 
             }
-            if (!circles[circle].isLive){
-                circles.splice(circle, 1);
-                this.score ++;
+            if (!enemys[enemy].isLive) {
+                enemys.splice(enemy, 1);
+                this.score++;
             }
 
-            if (circles.length == 0) {
-                creatMultipleCircle();
-                showCircles();
+            if (enemys.length == 0) {
+                let imgBg = document.getElementById('imgBg');
+                let index = 1;
+                if (index == 1) {
+                    index = 2;
+                } else {
+                    index = 1;
+                }
+                imgBg.src = "images/background" + index + ".png";
+                creatMultipleEnemy();
+                showEnemys();
 
             }
         }
     };
 
     this.drawScore = function () {
-      ctx.beginPath();
-      ctx.font = "20px arial";
-      ctx.fillStyle = 'white';
-      ctx.fillText('Điểm: ' + this.score,20,30);
-      ctx.closePath();
+        ctx.beginPath();
+        ctx.font = "20px arial";
+        ctx.fillStyle = 'white';
+        ctx.fillText('Điểm: ' + this.score, 20, 30);
+        ctx.closePath();
     }
 };
 
