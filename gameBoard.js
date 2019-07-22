@@ -6,10 +6,10 @@ let GameBoard = function () {
         let rightEnemy = enemy.xPosition + enemy.width;
         let topEnemy = enemy.yPosition;
         let bottomEnemy = enemy.yPosition + enemy.height;
-        let leftBullet = bullet.xPosition - bullet.radius;
-        let rightBullet = bullet.xPosition + bullet.radius;
-        let topBullet = bullet.yPosition - bullet.radius;
-        let bottomBullet = bullet.yPosition + bullet.radius;
+        let leftBullet = bullet.xPosition;
+        let rightBullet = bullet.xPosition + bullet.width;
+        let topBullet = bullet.yPosition;
+        let bottomBullet = bullet.yPosition + bullet.height;
         if (rightEnemy < leftBullet || bottomEnemy < topBullet || leftEnemy > rightBullet || topEnemy > bottomBullet) {
             return false;
         } else {

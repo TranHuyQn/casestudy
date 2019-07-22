@@ -3,7 +3,7 @@ let Plane = function (xPosition, yPosition, width, height, speed, isMoveLeft, is
     this.height = height;
     this.speed = speed;
     this.xPosition = xPosition;
-    this.yposition = yPosition;
+    this.yPosition = yPosition;
     this.isMoveLeft = isMoveLeft;
     this.isMoveRight = isMoveRight;
     this.isShoot = isShoot;
@@ -13,7 +13,7 @@ let Plane = function (xPosition, yPosition, width, height, speed, isMoveLeft, is
 
     this.draw = function () {
         let imgPlane = document.getElementById('imgPlane');
-        ctx.drawImage(imgPlane, this.xPosition, this.yposition, this.width, this.height);
+        ctx.drawImage(imgPlane, this.xPosition, this.yPosition, this.width, this.height);
     };
 
     this.move = function () {
@@ -35,7 +35,7 @@ let Plane = function (xPosition, yPosition, width, height, speed, isMoveLeft, is
         if (this.isShoot) {
             this.reloadCount++; //xử ly khảng cách giữa hai lần bắn
             if (this.reloadCount >= this.reload) {
-                let bullet = new Bullet(this.xPosition + this.width / 2, this.yposition, 2); //tạo bullet tại vị trí của plane.
+                let bullet = new Bullet(this.xPosition + this.width / 2 - 3, this.yPosition, 6, 11); //tạo bullet tại vị trí của plane.
                 this.bullets.push(bullet);
                 let sound = new Audio();
                 sound.src = "sounds/bulletSound.mp3";

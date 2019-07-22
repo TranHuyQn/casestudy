@@ -1,15 +1,13 @@
-let Bullet = function (xPosition, yPosition, radius) {
+let Bullet = function (xPosition, yPosition, width, height) {
     this.xPosition = xPosition;
     this.yPosition = yPosition;
-    this.radius = radius;
+    this.width = width;
+    this.height = height;
     this.speed = 10;
 
     this.draw = function () {
-        ctx.beginPath();
-        ctx.arc(this.xPosition, this.yPosition, this.radius, 0, 2 * Math.PI);
-        ctx.fillStyle = 'white';
-        ctx.fill();
-        ctx.closePath();
+        let imgBullet = document.getElementById('imgBullet');
+        ctx.drawImage(imgBullet, this.xPosition, this.yPosition, this.width, this.height);
     };
 
     this.move = function () {
