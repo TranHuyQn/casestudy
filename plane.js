@@ -35,7 +35,7 @@ let Plane = function (xPosition, yPosition, width, height, speed, isMoveLeft, is
         if (this.isShoot) {
             this.reloadCount++; //xử ly khảng cách giữa hai lần bắn
             if (this.reloadCount >= this.reload) {
-                let bullet = new Bullet(this.xPosition + this.width / 2 - 3, this.yPosition, 6, 11); //tạo bullet tại vị trí của plane.
+                let bullet = new Bullet(this.xPosition + this.width / 2 - BULLET_WIDTH/2, this.yPosition, BULLET_WIDTH, BULLET_HEIGHT); //tạo bullet tại vị trí của plane.
                 this.bullets.push(bullet);
                 let sound = new Audio();
                 sound.src = "sounds/bulletSound.mp3";
