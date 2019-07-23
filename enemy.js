@@ -21,12 +21,10 @@ let Enemy = function (xPosition , yPosition, width, height, speed) {
 
 //khởi tạo enemy.
 function createEnemy(){
-    let enemyWidth = 30;
-    let enemyHeight = 24;
     let speed = Math.random()*1.3 + 0.5;
-    let xEnemy = Math.random() * (canvas.width - enemyWidth + 1);
+    let xEnemy = Math.random() * (canvas.width - ENEMY_WIDTH + 1);
     let yEnemy = Math.random() * (0 - canvas.height);
-    let enemy = new Enemy(xEnemy, yEnemy, enemyWidth, enemyHeight, speed);
+    let enemy = new Enemy(xEnemy, yEnemy, ENEMY_WIDTH, ENEMY_HEIGHT, speed);
     enemys.push(enemy);
     enemy.draw();
 }
