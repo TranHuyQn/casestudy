@@ -42,7 +42,7 @@ let isGameOver = false;
 gameBoard.control();
 
 //Bắt đầu game.
-background.setImage();
+background.img = "images/"+picsnames[0];
 background.draw();
 plane.draw();
 gameBoard.drawScore();

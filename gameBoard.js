@@ -60,15 +60,15 @@ let GameBoard = function () {
     };
 
     this.checkCrash = function () { //kiểm tra điều kiện va trạm.
-        for (let enemy = 0; enemy < enemys.length; enemy++) {
-            for (let bullet = 0; bullet < plane.bullets.length; bullet++) {
-                if (this.crash(enemys[enemy], plane.bullets[bullet])) {
-                    enemys[enemy].isLive = false;
+        for (let i = 0; i < enemys.length; i++) {
+            for (let j = 0; j < plane.bullets.length; j++) {
+                if (this.crash(enemys[i], plane.bullets[j])) {
+                    enemys[i].isLive = false;
                 }
 
             }
-            if (!enemys[enemy].isLive) { //xử lý tính điểm.
-                enemys.splice(enemy, 1);
+            if (!enemys[i].isLive) { //xử lý tính điểm.
+                enemys.splice(i, 1);
                 this.score++;
             }
 
